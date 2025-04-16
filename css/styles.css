@@ -1,74 +1,123 @@
+
 * {
   box-sizing: border-box;
 }
 
 html {
-  font:
-    1.2em/1.4 Arial,
-    Helvetica,
-    sans-serif;
+  font: 1.2em/1.4 Arial, Helvetica, sans-serif;
 }
 
 body {
-  padding: 0 0 1em;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
 }
 
 header {
   background-color: #333;
   color: #fff;
-  border: 5px solid #000;
+  padding: 1em;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .title {
+  font-size: 1.5em;
+  font-style: italic;
+  font-weight: bold;
 }
 
 header ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1em;
 }
 
 header a {
   color: #fff;
   text-decoration: none;
-  display: block;
-  padding: 0.5em 1em;
-  border-top: 1px solid #999;
 }
 
-header .title {
-  font-size: 150%;
-  font-style: italic;
-  font-weight: bold;
-  padding: 1em;
+.content-wrapper {
+  display: flex;
+  margin-top: 4em; /* Espaço para compensar o header fixo */
+  width: 100%;
 }
 
 main {
-  padding: 0 1em;
+  flex: 3;
+  padding: 1em;
+  margin-right: 21%; /* Dá espaço para a sidebar */
 }
 
 .cards {
   list-style: none;
-  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
   padding: 0;
+  margin: 0;
 }
 
 .cards li {
-  border: 5px solid #000;
-  margin-bottom: 1em;
+  border: 1px solid #000;
+  background-color: #f9f9f9;
+  width: calc(45% - 1em);
+  box-sizing: border-box;
 }
 
 .cards h2 {
   background-color: #333;
   color: #fff;
   margin: 0;
-  padding: 0.5em 1em;
+  padding: 0.5em;
 }
 
 .cards .inner {
-  padding: 0.5em 1em;
+  padding: 0.5em;
 }
 
 .sidebar {
+  width: 20%; /* Largura fixa */
   background-color: #333;
-  border: 5px solid #000;
-  padding: 0.5em 1em;
   color: #fff;
+  padding: 1em;
+  position: fixed; /* Fixa na lateral direita */
+  top: 5em; /* Ajusta para garantir espaço suficiente abaixo do header */
+  right: 0;
+  height: calc(100% - 5em); /* Altura total menos o header */
+  overflow-y: auto; /* Barra de rolagem se necessário */
+}
+
+@media screen and (max-width: 1024px) {
+  header ul {
+      flex-direction: column;
+  }
+
+  .cards li {
+      width: 100%;
+  }
+
+  main {
+      margin-right: 0;
+  }
+
+  .sidebar {
+      position: static;
+      width: 100%;
+      height: auto;
+  }
+
+  .content-wrapper {
+      flex-direction: column;
+  }
 }
